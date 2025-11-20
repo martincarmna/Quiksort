@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Quicksort {
+public class QuickSortPersistencia {
 
     public static void main(String[] args) {
         // RUTAS ABSOLUTAS

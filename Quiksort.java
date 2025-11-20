@@ -90,6 +90,12 @@ public class Quiksort {
 
         swap(arr, i + 1, high);
         return i + 1;
+ public static void swap(int[] arr, int a, int b) {
+        int tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    }
+}
     }
 
 

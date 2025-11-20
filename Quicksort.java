@@ -1,19 +1,16 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-public class Quiksort {
-     public static void main(String[] args) {
-        String archivo = "numeros.txt";
+public class Quicksort {
+
+    public static void main(String[] args) {
+        // RUTAS ABSOLUTAS
+        String archivoEntrada = "C:\\archivos\\numeros.txt";
+        String archivoSalida  = "C:\\archivos\\numeros_ordenados.txt";
 
         try {
             // 1. Leer números del archivo
-            int[] numeros = leerNumeros(archivo);
+            int[] numeros = leerNumeros(archivoEntrada);
 
             System.out.println("Datos cargados:");
             System.out.println(Arrays.toString(numeros));
@@ -24,16 +21,17 @@ public class Quiksort {
             System.out.println("Datos ordenados:");
             System.out.println(Arrays.toString(numeros));
 
-            // 3. Guardarlos ordenados
-            guardarNumeros("numeros_ordenados.txt", numeros);
+            // 3. Guardar en archivo de salida
+            guardarNumeros(archivoSalida, numeros);
 
-            System.out.println("Se guardaron en: numeros_ordenados.txt");
+            System.out.println("Se guardaron en: " + archivoSalida);
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
- // =====================
+
+    // =====================
     // PERSISTENCIA
     // =====================
 
@@ -50,7 +48,7 @@ public class Quiksort {
         }
         br.close();
 
-        // Convertimos la lista a arreglo
+        // Convertimos lista → arreglo
         int[] arr = new int[lista.size()];
         for (int i = 0; i < lista.size(); i++) arr[i] = lista.get(i);
         return arr;
@@ -58,13 +56,12 @@ public class Quiksort {
 
     public static void guardarNumeros(String archivo, int[] numeros) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
-
         for (int n : numeros) {
             bw.write(n + " ");
         }
-
         bw.close();
     }
+
     // =====================
     // QUICKSORT
     // =====================
@@ -76,9 +73,9 @@ public class Quiksort {
             quickSort(arr, pivot + 1, high);
         }
     }
-    // Partición clásica de Lomuto
+
     public static int partition(int[] arr, int low, int high) {
-        int pivot = arr[high]; // pivote último elemento
+        int pivot = arr[high];  
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
@@ -90,29 +87,11 @@ public class Quiksort {
 
         swap(arr, i + 1, high);
         return i + 1;
- public static void swap(int[] arr, int a, int b) {
+    }
+
+    public static void swap(int[] arr, int a, int b) {
         int tmp = arr[a];
         arr[a] = arr[b];
         arr[b] = tmp;
     }
-}
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

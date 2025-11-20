@@ -1,4 +1,11 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Quiksort {
      public static void main(String[] args) {
@@ -26,5 +33,36 @@ public class Quiksort {
             System.out.println("Error: " + e.getMessage());
         }
     }
+ // =====================
+    // PERSISTENCIA
+    // =====================
 
+    public static int[] leerNumeros(String archivo) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(archivo));
+        List<Integer> lista = new ArrayList<>();
+
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] partes = linea.split("\\s+");
+            for (String p : partes) {
+                if (!p.isEmpty()) lista.add(Integer.parseInt(p));
+            }
+        }
+        br.close();
+
+        // Convertimos la lista a arreglo
+        int[] arr = new int[lista.size()];
+        for (int i = 0; i < lista.size(); i++) arr[i] = lista.get(i);
+        return arr;
+    }
+
+    public static void guardarNumeros(String archivo, int[] numeros) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+
+        for (int n : numeros) {
+            bw.write(n + " ");
+        }
+
+        bw.close();
+    }
 }

@@ -31,10 +31,7 @@ public class QuickSortPersistencia {
         }
     }
 
-    // =====================
     // PERSISTENCIA
-    // =====================
-
     public static int[] leerNumeros(String archivo) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(archivo));
         List<Integer> lista = new ArrayList<>();
@@ -62,10 +59,8 @@ public class QuickSortPersistencia {
         bw.close();
     }
 
-    // =====================
+    
     // QUICKSORT
-    // =====================
-
     public static void quickSort(int[] arr, int low, int high) {
         if (low < high) {
             int pivot = partition(arr, low, high);
